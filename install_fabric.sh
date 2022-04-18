@@ -114,4 +114,4 @@ fi
 
 #Install samples, binaries and dokcer images
 echo -e "${Yellow}Installing Hyperledger Fabric samples, binaries and docker images${NC}"
-curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/release-2.2/scripts/bootstrap.sh | bash -s -- 2.2.5 1.5.2
+curl -sSL https://raw.githubusercontent.com/MaisamV/CentosMinimalScripts/master/fabric_bootstrap.sh | bash -s -- 2.2.5 1.5.2
