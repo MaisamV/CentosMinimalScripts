@@ -114,4 +114,4 @@ fi
 
 #Install samples, binaries and dokcer images
 echo -e "${Yellow}Installing Hyperledger Fabric binaries and docker images${NC}"
-fabric_bootstrap.sh -s -- 2.2.5 1.5.2
+./fabric_bootstrap.sh -s -- 2.2.5 1.5.2
