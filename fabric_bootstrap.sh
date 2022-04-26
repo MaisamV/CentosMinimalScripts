@@ -79,22 +79,28 @@ download() {
 }
 
 pullBinaries() {
-    echo "===> Downloading version ${FABRIC_TAG} platform specific fabric binaries"
-    download "${BINARY_FILE}" "https://github.com/hyperledger/fabric/releases/download/v${VERSION}/${BINARY_FILE}"
-    if [ $? -eq 22 ]; then
-        echo
-        echo "------> ${FABRIC_TAG} platform specific fabric binary is not available to download <----"
-        echo
-        exit
-    fi
 
-    echo "===> Downloading version ${CA_TAG} platform specific fabric-ca-client binary"
-    download "${CA_BINARY_FILE}" "https://github.com/hyperledger/fabric-ca/releases/download/v${CA_VERSION}/${CA_BINARY_FILE}"
-    if [ $? -eq 22 ]; then
-        echo
-        echo "------> ${CA_TAG} fabric-ca-client binary is not available to download  (Available from 1.1.0-rc1) <----"
-        echo
-        exit
+    #Check fabric binaries
+    if [ ! command -v peer &> /dev/null ] || [ ! command -v orderer &> /dev/null ] || [ ! command -v idemixgen &> /dev/null ] || [ ! command -v fabric-ca-server &> /dev/null ] || [ ! command -v fabric-ca-client &> /dev/null ] || [ ! command -v cryptogen &> /dev/null ] || [ ! command -v discover &> /dev/null ] || [ ! command -v configtxgen &> /dev/null ] || [ ! command -v configtxlator &> /dev/null ]; then
+        echo "===> Downloading version ${FABRIC_TAG} platform specific fabric binaries"
+        download "${BINARY_FILE}" "https://github.com/hyperledger/fabric/releases/download/v${VERSION}/${BINARY_FILE}"
+        if [ $? -eq 22 ]; then
+            echo
+            echo "------> ${FABRIC_TAG} platform specific fabric binary is not available to download <----"
+            echo
+            exit
+        fi
+
+        echo "===> Downloading version ${CA_TAG} platform specific fabric-ca-client binary"
+        download "${CA_BINARY_FILE}" "https://github.com/hyperledger/fabric-ca/releases/download/v${CA_VERSION}/${CA_BINARY_FILE}"
+        if [ $? -eq 22 ]; then
+            echo
+            echo "------> ${CA_TAG} fabric-ca-client binary is not available to download  (Available from 1.1.0-rc1) <----"
+            echo
+            exit
+        fi
+
+        cp -rf ./bin /root/bin
     fi
 }
 
