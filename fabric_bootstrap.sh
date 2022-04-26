@@ -81,7 +81,7 @@ download() {
 pullBinaries() {
 
     #Check fabric binaries
-    if [ ! command -v peer &> /dev/null ] || [ ! command -v orderer &> /dev/null ] || [ ! command -v idemixgen &> /dev/null ] || [ ! command -v fabric-ca-server &> /dev/null ] || [ ! command -v fabric-ca-client &> /dev/null ] || [ ! command -v cryptogen &> /dev/null ] || [ ! command -v discover &> /dev/null ] || [ ! command -v configtxgen &> /dev/null ] || [ ! command -v configtxlator &> /dev/null ]; then
+    if  ! command -v peer &> /dev/null  ||  ! command -v orderer &> /dev/null  ||  ! command -v idemixgen &> /dev/null  ||  ! command -v fabric-ca-server &> /dev/null  || ! command -v fabric-ca-client &> /dev/null  ||  ! command -v cryptogen &> /dev/null  ||  ! command -v discover &> /dev/null  ||  ! command -v configtxgen &> /dev/null  ||  ! command -v configtxlator &> /dev/null ; then
         echo "===> Downloading version ${FABRIC_TAG} platform specific fabric binaries"
         download "${BINARY_FILE}" "https://github.com/hyperledger/fabric/releases/download/v${VERSION}/${BINARY_FILE}"
         if [ $? -eq 22 ]; then
@@ -100,7 +100,7 @@ pullBinaries() {
             exit
         fi
 
-        cp -rf ./bin /root/bin
+        cp -rf ./bin /root/
     fi
 }
 
