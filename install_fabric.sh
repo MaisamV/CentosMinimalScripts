@@ -95,23 +95,23 @@ fi
 if ! command -v docker &> /dev/null
 then
     echo -e "${Yellow}Installing docker${NC}"
-    curl -sSL https://raw.githubusercontent.com/MaisamV/CentosMinimalScripts/master/install_docker.sh | bash -s
+    ./install_docker.sh
 fi
 
 #Check docker_compose
 if ! command -v docker-compose &> /dev/null
 then
     echo -e "${Yellow}Installing docker-compose${NC}"
-    curl -sSL https://raw.githubusercontent.com/MaisamV/CentosMinimalScripts/master/install_docker_compose.sh | bash -s
+    ./install_docker_compose.sh
 fi
 
 #Check go
 if ! command -v go &> /dev/null
 then
     echo -e "${Yellow}Installing Go${NC}"
-    curl -sSL https://raw.githubusercontent.com/MaisamV/CentosMinimalScripts/master/install_go18.sh | bash -s
+    ./install_go18.sh
 fi
 
 #Install samples, binaries and dokcer images
 echo -e "${Yellow}Installing Hyperledger Fabric samples, binaries and docker images${NC}"
-curl -sSL https://raw.githubusercontent.com/MaisamV/CentosMinimalScripts/master/fabric_bootstrap.sh | bash -s -- 2.2.5 1.5.2
+./fabric_bootstrap.sh -- 2.2.5 1.5.2
