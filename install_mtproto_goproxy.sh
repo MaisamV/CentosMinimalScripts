@@ -14,10 +14,11 @@ cd mtg
 go mod tidy
 make static
 
-echo -n "enter the value : "
+echo -n "enter the port : "
 read PORT
 sudo firewall-cmd --zone=public --permanent --add-port=$PORT/tcp
 sudo firewall-cmd --zone=public --permanent --add-port=$PORT/udp
+sudo firewall-cmd --reload
 SECRET=$(./mtg generate-secret --hex google.com)
 echo "This is proxy secret: ${SECRET}"
 echo "run following command in order to start proxy"
