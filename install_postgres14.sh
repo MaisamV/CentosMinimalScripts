@@ -27,3 +27,6 @@ echo "listen_addresses = '*'" >> /var/lib/pgsql/14/data/postgresql.conf
 sudo -u postgres -H -- psql -d postgres -c "alter user postgres with password '$password'"
 
 systemctl restart postgresql-14
+sudo firewall-cmd --zone=public --permanent --add-port=5432/tcp
+sudo firewall-cmd --zone=public --permanent --add-port=5432/udp
+sudo firewall-cmd --reload
