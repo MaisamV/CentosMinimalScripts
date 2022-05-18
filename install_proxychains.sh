@@ -9,23 +9,23 @@ make && make install
 ./tools/install.sh -D -m 644 libproxychains4.so /usr/local/lib/libproxychains4.so
 ./tools/install.sh -D -m 644 src/proxychains.conf /usr/local/etc/proxychains.conf
 
-echo -n Enter protocol(http/https/socks4):
+echo -n "Enter protocol(http/https/socks4):"
 read protocol
 echo
 
-echo -n Enter domain:
+echo -n "Enter domain:"
 read domain
 echo
 
-echo -n Enter port:
+echo -n "Enter port:"
 read port
 echo
 
-echo -n Enter proxy username:
+echo -n "Enter proxy username:"
 read username
 echo
 
-echo -n Enter proxy password:
+echo -n "Enter proxy password:"
 read -s password
 echo
 
