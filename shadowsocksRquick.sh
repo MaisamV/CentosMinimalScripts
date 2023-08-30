@@ -377,6 +377,8 @@ install_shadowsocksr(){
     if check_sys packageManager yum; then
         firewall_set
     fi
+    sed -i 's/^\s\+\$DAEMON -c \$CONF -d/        python3 $DAEMON -c $CONF -d/g' /etc/init.d/shadowsocks
+    systemctl daemon-reload
     install
     install_cleanup
 }
