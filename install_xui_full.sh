@@ -10,19 +10,19 @@ install_dependencies() {
 }
 
 install_panel() {
-  printf 'n\n' | bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
+  printf 'n\n' | bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh) v2.3.6
   /usr/local/x-ui/x-ui setting -username admin -password admin
   /usr/local/x-ui/x-ui setting -webBasePath /
   /usr/local/x-ui/x-ui setting -port $1
   /usr/local/x-ui/x-ui cert -reset
-  printf '11\n\n0\n' | x-ui > /dev/null
+  printf '13\n\n0\n' | x-ui > /dev/null
 }
 
 add_inbounds() {
-  username=$(printf '8\n' | x-ui | grep -Po 'username: \K[^\n\s]*')
-  password=$(printf '8\n' | x-ui | grep -Po 'password: \K[^\n]*')
-  port=$(printf '8\n' | x-ui | grep -Po 'port: \K[^\n\s]*')
-  path=$(printf '8\n' | x-ui | grep -Po 'webBasePath: \K[^\n\s]*')
+  username=$(printf '10\n' | x-ui | grep -Po 'username: \K[^\n\s]*')
+  password=$(printf '10\n' | x-ui | grep -Po 'password: \K[^\n]*')
+  port=$(printf '10\n' | x-ui | grep -Po 'port: \K[^\n\s]*')
+  path=$(printf '10\n' | x-ui | grep -Po 'webBasePath: \K[^\n\s]*')
   ipv6=$(curl -s -6 https://ifconfig.co)
   session=$(curl -Lv "http://127.0.0.1:${port}${path}login" -H 'Accept: application/json, text/plain, */*' -H 'Accept-Language: en-US,en;q=0.9' -H 'Connection: keep-alive' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Cookie: lang=en-US' -H 'Sec-Fetch-Dest: empty' -H 'Sec-Fetch-Mode: cors' -H 'Sec-Fetch-Site: same-origin' --data-raw "username=${username}&password=${password}" --insecure 2>&1 | grep -Po 'session=\K[^;]*')
 
@@ -70,7 +70,7 @@ config_panel() {
   /usr/local/x-ui/x-ui setting -username admin -password $1
   /usr/local/x-ui/x-ui setting -webBasePath /${2}/
   /usr/local/x-ui/x-ui setting -port ${3}
-  printf '11\n\n0\n' | x-ui > /dev/null
+  printf '13\n\n0\n' | x-ui > /dev/null
 }
 
 open_ports() {
@@ -205,7 +205,6 @@ ufw allow $grpcRealityPort
 ufw allow $obfuscatedHttpPort
 ufw allow $ssPort
 open_ports
-printf '8\n' | x-ui
+printf '10\n' | x-ui
 echo https://$(curl -s https://ipinfo.io/ip)/${URIPrefix}/
 echo https://[$(curl -s -6 https://ifconfig.co)]/${URIPrefix}/
-
